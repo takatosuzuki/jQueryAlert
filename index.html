@@ -1,64 +1,21 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-    <link rel="stylesheet" href="style.css">
-    <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="main.js"></script>
-  </head>
-  <body>
-    <div id="wrap">
-        <div id="contents">
-          <ul>
-            <li class="trigger" data-trigger="modal1">クロード・モネ</li>
-            <li class="trigger" data-trigger="modal2">ジョルジュ・スーラ</li>
-            <li class="trigger" data-trigger="modal3">ギュスターヴ・モロー</li>
-            <li class="trigger" data-trigger="modal4">グスタフ・クリムト</li>
-          </ul>
-        </div>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div class="container">
+    <button id="button">click</button>
+  </div>
 
-      <div class="panel" id="modal1">
-        <div class="modal-content">
-          <div class="modal-close">
-            x
-          </div>
-          <p>
-            クロード・モネは、印象派の代表的な画家です。
-          </p>
-        </div>
-      </div>
-      <div class="panel" id="modal2">
-        <div class="modal-content">
-          <div class="modal-close">
-            x
-          </div>
-          <p>
-            ジョルジュ・スーラは、新印象派の代表的な画家です。
-          </p>
-        </div>
-      </div>
-      <div class="panel" id="modal3">
-        <div class="modal-content">
-          <div class="modal-close">
-            x
-          </div>
-          <p>
-            ギュスターヴ・モローは、象徴主義の代表的な画家です。
-          </p>
-        </div>
-      </div>
-      <div class="panel" id="modal4">
-        <div class="modal-content">
-          <div class="modal-close">
-            x
-          </div>
-          <p>
-            グスタフ・クリムトは、ウィーン世紀末芸術の代表的な画家です。
-          </p>
-        </div>
-      </div>
-
-    </div>
-  </body>
+  <script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var button = document.getElementById('button')
+    button.addEventListener('click', function(){
+      alert('Hello');
+    });
+  });
+  </script>
+</body>
 </html>
