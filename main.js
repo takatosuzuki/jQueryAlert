@@ -1,44 +1,42 @@
-var fruits = ['apple', 'apricot', 'avocado', 'blueberry', 'cherry', 'coconut', 'cranberry', 'dragonfruit', 'durian', 'grape', 'grapefruit', 'guava', 'kiwi fruit', 'lemon', 'lime', 'lychee', 'mango', 'melon', 'watermelon', 'miracle fruit', 'orange', 'bloodorange','clementine','mandarine','tangerine','papaya','passionfruit','peach','pear','persimmon','physalis','plum/prune','pineapple','pomegranate','raspberry','rambutan','star fruit','strawberry'];
+$(function(){
+  var openTrigger = $(".trigger");
+  var panel = $(".panel");
+  var closeTrigger = $(".modal-close");
+  var modalContent = $(".modal-content");
+  var currentTargetModalId = null;
 
-$(function() {
-  var list = $("#list");
-  var preWord;
-
-  function appendList(word){
-    var item = $('<li class="list">').append(word);
-    list.append(item);
+  function openModal(){
+    $(currentTargetModalId).addClass('visible');
   }
 
-  function editElement(element) {
-    var result = "^" + element;
-    return result;
+  function hideModal(){
+    $(currentTargetModalId).removeClass('visible');
+  }  
+
+  function bindOpenModal(){
+    openTrigger.on('click', function(){
+      currentTargetModalId = '#' + $(this).data('trigger');
+      openModal();
+    });
   }
 
-  $("#keyword").on("keyup", function(){
-    var input = $("#keyword").val();
-    var inputs = input.split(" ").filter(function(e) { return e; });
-    var newInputs = inputs.map(editElement);
-    var word = newInputs.join("|");
-    var reg = RegExp(word);
+  function bindCloseModal(){
+    panel.on('click', hideModal);
+  }
 
-    if (input.length === 0) {
-      $(".list").remove();
-    }
+  function propagateModal(){
+    modalContent.on('click', function(e){
+      e.stopPropagation();
+    })
+  }
 
-    if (word != preWord && input.length !== 0) {
-      $(".list").remove();
-      $.each(fruits, function(i, fruit){
-       if (fruit.match(reg)) {
-           appendList(fruit);
-        }
-      });
+  function btnClose() {
+    closeTrigger.on('click', hideModal);
+  }
 
-      if ($(".list").length === 0) {
-        appendList("一致する果物はありませんでした");
-      }       
+  bindOpenModal();
+  propagateModal();
+  bindCloseModal();
+  btnClose();
 
-    }
-
-    preWord = word;
-  });
 });
